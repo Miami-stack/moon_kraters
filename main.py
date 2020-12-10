@@ -1,16 +1,15 @@
+"""Скрипт подсчета лунных кратеров."""
+
 import os
 import warnings
 
 import numpy as np
 
 
-def get_value_from_file(filename: str) -> np.ndarray:
-    """
-    Читает файл и преобразовывает его в 2д массив
-
-    """
+def get_value_from_file(file: str) -> np.ndarray:
+    """Читает файл и преобразовывает его в 2д массив."""
     base_dir = os.path.dirname(os.path.realpath(__file__))
-    file_path = os.path.join(base_dir, filename)
+    file_path = os.path.join(base_dir, file)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         my_file = np.loadtxt(file_path).astype(int)
@@ -18,11 +17,7 @@ def get_value_from_file(filename: str) -> np.ndarray:
 
 
 def calculate(matrix1: np.ndarray, query1: np.ndarray) -> str:
-    """
-
-    Эта функция находит и подсчитывает кратеры
-
-    """
+    """Эта функция находит и подсчитывает кратеры."""
     searchlist = []
     t = all(matrix1[0, :] == 1)
     if t:
@@ -39,4 +34,3 @@ matrix = get_value_from_file('test_file')
 query = np.array([1, 0])
 
 print(calculate(matrix, query))
-
